@@ -50,6 +50,7 @@ impl<E: PairingEngine> ILV<E> {
 
         // We have to compute the proof piece wise since the (dim + 1)-th coefficient
         // of the product is zero.
+        // ^ The actual reason we have to do this piecewise is because g^(dim+1) *should* be missing.
         let first_part = VariableBaseMSM::multi_scalar_mul(
             &ck.powers_of_beta_g_first,
             &product_coeffs[..(dim + 1)],
